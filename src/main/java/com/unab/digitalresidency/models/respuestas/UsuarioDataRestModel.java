@@ -9,7 +9,8 @@ public class UsuarioDataRestModel { // se convierte en Json para entregarsela al
     private String apellido;
     private String email;
     private String password;
-
+    private String passwordEncriptada; // nuevo mas entity columna
+    
 
     public String getIdUsuario() {
         return this.idUsuario;
@@ -65,6 +66,14 @@ public class UsuarioDataRestModel { // se convierte en Json para entregarsela al
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPasswordEncriptada() {
+        return this.passwordEncriptada;
+    }
+
+    public void setPasswordEncriptada(String passwordEncriptada) {
+        this.passwordEncriptada = passwordEncriptada;
     }
 
 }

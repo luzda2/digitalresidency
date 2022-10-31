@@ -5,11 +5,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 // @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class}) // Omitir la base de datos
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class}) // excluimos la seguridad
-
+@EnableJpaAuditing()
 
 public class DigitalresidencyApplication {
 

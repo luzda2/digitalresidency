@@ -1,13 +1,25 @@
 package com.unab.digitalresidency.data.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity(name = "usuario")
+@Table(indexes = {
+    @Index(columnList = "idUsuario", name = "index_idUsuario", unique = true),
+    @Index(columnList = "documIden", name = "index_documIden", unique = true),
+    @Index(columnList = "username", name = "index_username", unique = true)
+})
+
 public class UsuarioEntity implements Serializable {
  
     private static final long serialVersionUID=1L;
@@ -36,6 +48,9 @@ public class UsuarioEntity implements Serializable {
     
     @Column(nullable=false, length = 10)
     private String username;
+
+    @Column(nullable=false, length = 20)
+    private String password;
     
     @Column(nullable=false)
     private String passwordEncriptada;
@@ -51,6 +66,9 @@ public class UsuarioEntity implements Serializable {
     
     @Column(nullable=false, length = 10)
     private String estado;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioEntity")
+    public List<FacAdmonEntity> facAdmonEntityList = new ArrayList<>();
 
 
     public long getId() {
@@ -117,6 +135,14 @@ public class UsuarioEntity implements Serializable {
         this.username = username;
     }
 
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getPasswordEncriptada() {
         return this.passwordEncriptada;
     }
@@ -155,6 +181,14 @@ public class UsuarioEntity implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public List<FacAdmonEntity> getFacAdmonEntityList() {
+        return this.facAdmonEntityList;
+    }
+
+    public void setFacAdmonEntityList(List<FacAdmonEntity> facAdmonEntityList) {
+        this.facAdmonEntityList = facAdmonEntityList;
     }
 
 }

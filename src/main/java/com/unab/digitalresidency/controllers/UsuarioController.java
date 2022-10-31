@@ -24,9 +24,16 @@ public class UsuarioController {
     IUsuarioServices iUsuarioServices;
 
     @GetMapping  // obtener informacion de un usuario
-    public String leerUsuario(){
-        return "Digital Residency";
+    public UsuarioDataRestModel leerUsuario(){
+
+        String username="sanfel";
+
+        UsuarioDto usuarioDto= iUsuarioServices.leerUsuario(username);
+
+        UsuarioDataRestModel usuarioDataRestModel= modelMapper.map(usuarioDto,UsuarioDataRestModel.class);
+        return usuarioDataRestModel;
     }
+
     @PostMapping // crear un  usuario
     public UsuarioDataRestModel crearUsuario(@RequestBody UsuarioCrearRequestModel usuarioCrearRequestModel){
 
